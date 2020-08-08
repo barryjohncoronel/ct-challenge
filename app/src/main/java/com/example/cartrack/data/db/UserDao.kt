@@ -6,8 +6,12 @@ import androidx.room.Query
 import com.example.cartrack.data.db.model.User
 import io.reactivex.Single
 
+
 @Dao
 interface UserDao {
+
+    @Insert
+    fun insert(user: User)
 
     @Query("SELECT * FROM user WHERE username = :username AND password = :password")
     fun getUser(
@@ -15,6 +19,6 @@ interface UserDao {
         password: String
     ): Single<User>
 
-    @Insert
-    fun insert(user: User)
+    @Query("SELECT COUNT(*) FROM user")
+    fun getCount(): Single<Int>
 }

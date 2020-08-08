@@ -1,13 +1,14 @@
 package com.example.cartrack.ui.login
 
 import androidx.lifecycle.ViewModel
+import com.example.cartrack.ui.login.service.LoginServiceModule
 import com.example.cartrack.util.ViewModelKey
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap
 
-@Module
-interface LoginActivityModule {
+@Module(includes = [LoginServiceModule::class])
+interface LoginModule {
 
     @Binds
     @IntoMap
