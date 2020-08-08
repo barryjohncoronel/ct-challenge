@@ -2,6 +2,7 @@ package com.example.cartrack.dagger
 
 import android.app.Application
 import com.example.cartrack.BaseApplication
+import com.example.cartrack.data.network.ApiFactoryModule
 import dagger.BindsInstance
 import dagger.Component
 import dagger.android.AndroidInjector
@@ -12,7 +13,8 @@ import javax.inject.Singleton
 @Component(
     modules = [
         AndroidSupportInjectionModule::class,
-        ActivitiesModule::class
+        ActivitiesModule::class,
+        ApiFactoryModule::class
     ]
 )
 interface AppComponent : AndroidInjector<BaseApplication> {
