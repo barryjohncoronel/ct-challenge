@@ -1,11 +1,10 @@
-package com.example.cartrack.ui.login
+package com.example.cartrack.ui.adduser
 
 import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.cartrack.data.db.model.User
-import com.example.cartrack.ui.login.service.LoginService
-import io.reactivex.SingleObserver
+import com.example.cartrack.ui.adduser.service.AddUserService
+import io.reactivex.CompletableObserver
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
@@ -13,8 +12,8 @@ import io.reactivex.schedulers.Schedulers
 import timber.log.Timber
 import javax.inject.Inject
 
-class LoginViewModel @Inject constructor(
-    private val loginService: LoginService
+class AddUserViewModel @Inject constructor(
+    private val addUserService: AddUserService
 ) : ViewModel() {
 
     private val compositeDisposable = CompositeDisposable()
@@ -23,29 +22,31 @@ class LoginViewModel @Inject constructor(
 
     val password = MutableLiveData("")
 
-    val loginErrorMessage = MutableLiveData("")
+    val addUserErrorMessage = MutableLiveData("")
 
-    val enableLogin = MediatorLiveData<Boolean>()
+    val enableAddUser = MediatorLiveData<Boolean>()
+
+    val addUserSuccessful = MutableLiveData(false)
 
     init {
-        enableLogin.addSource(username) { checkFieldsForLogin() }
-        enableLogin.addSource(password) { checkFieldsForLogin() }
+        enableAddUser.addSource(username) { checkFieldsForLogin() }
+        enableAddUser.addSource(password) { checkFieldsForLogin() }
     }
 
     private fun checkFieldsForLogin() {
-        enableLogin.value = username.value!!.isNotBlank() and password.value!!.isNotBlank()
+        enableAddUser.value = username.value!!.length >= 5 && password.value!!.length >= 8
 
-        loginErrorMessage.value = ""
+        addUserErrorMessage.value = ""
     }
 
-    fun login() {
-        loginService
-            .login(username.value!!, password.value!!)
+    fun addUser() {
+        addUserService
+            .addUser(username.value!!, password.value!!)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
-            .subscribe(object : SingleObserver<User> {
-                override fun onSuccess(user: User) {
-                    Timber.e("user: $user")
+            .subscribe(object : CompletableObserver {
+                override fun onComplete() {
+                    addUserSuccessful.value = true
                 }
 
                 override fun onSubscribe(d: Disposable) {
@@ -53,7 +54,7 @@ class LoginViewModel @Inject constructor(
                 }
 
                 override fun onError(e: Throwable) {
-                    loginErrorMessage.value = e.localizedMessage
+                    addUserErrorMessage.value = e.localizedMessage
                 }
             })
     }

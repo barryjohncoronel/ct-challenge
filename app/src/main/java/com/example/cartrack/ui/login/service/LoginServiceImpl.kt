@@ -1,18 +1,16 @@
 package com.example.cartrack.ui.login.service
 
+import android.content.Context
+import com.example.cartrack.R
 import com.example.cartrack.data.db.UserDao
 import com.example.cartrack.data.db.model.User
 import io.reactivex.Single
 import javax.inject.Inject
 
 class LoginServiceImpl @Inject constructor(
+    private val context: Context,
     private val userDao: UserDao
 ) : LoginService {
-
-    companion object {
-        const val INVALID_CREDENTIALS = "Invalid credentials."
-        const val EMPTY_USER_TABLE = "No users found. Please add a user."
-    }
 
     override fun login(
         username: String,
@@ -21,11 +19,11 @@ class LoginServiceImpl @Inject constructor(
         return userDao.getCount()
             .flatMap {
                 if (it == 0) {
-                    Single.error(Throwable(EMPTY_USER_TABLE))
+                    Single.error(Throwable(context.getString(R.string.no_users_found)))
                 } else {
                     userDao.getUser(username, password)
                         .onErrorResumeNext {
-                            Single.error(Throwable(INVALID_CREDENTIALS))
+                            Single.error(Throwable(context.getString(R.string.invalid_credentials)))
                         }
                 }
             }

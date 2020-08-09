@@ -4,4 +4,9 @@
     <string name="password">Password</string>
     <string name="login">Login</string>
     <string name="add_user">Add User</string>
+    <string name="add_user_message">Username minimum length: 5\nPassword minimum length: 8</string>
+    <string name="add_user_successful">Add User successful.</string>
+    <string name="username_already_exists">Username already exists.</string>
+    <string name="invalid_credentials">Invalid credentials.</string>
+    <string name="no_users_found">No users found. Please add a user.</string>
 </resources>
