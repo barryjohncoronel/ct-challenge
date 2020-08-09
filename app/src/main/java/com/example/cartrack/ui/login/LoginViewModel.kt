@@ -27,6 +27,8 @@ class LoginViewModel @Inject constructor(
 
     val enableLogin = MediatorLiveData<Boolean>()
 
+    val loginSuccessful = MutableLiveData(false)
+
     init {
         enableLogin.addSource(username) { checkFieldsForLogin() }
         enableLogin.addSource(password) { checkFieldsForLogin() }
@@ -45,7 +47,7 @@ class LoginViewModel @Inject constructor(
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(object : SingleObserver<User> {
                 override fun onSuccess(user: User) {
-                    Timber.e("user: $user")
+                    loginSuccessful.value = true
                 }
 
                 override fun onSubscribe(d: Disposable) {

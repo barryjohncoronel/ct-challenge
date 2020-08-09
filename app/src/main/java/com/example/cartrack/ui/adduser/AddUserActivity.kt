@@ -1,6 +1,8 @@
 package com.example.cartrack.ui.adduser
 
+import android.annotation.SuppressLint
 import android.app.Activity
+import android.content.pm.ActivityInfo
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.databinding.DataBindingUtil
@@ -25,6 +27,13 @@ class AddUserActivity : DaggerAppCompatActivity() {
 
     companion object {
         const val REQUEST_CODE = 100
+    }
+
+    @SuppressLint("SourceLockedOrientationActivity")
+    override fun onStart() {
+        super.onStart()
+
+        requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

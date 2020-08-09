@@ -1,13 +1,17 @@
 package com.example.cartrack.ui.login
 
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Intent
+import android.content.pm.ActivityInfo
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
 import com.example.cartrack.R
 import com.example.cartrack.databinding.ActivityLoginBinding
 import com.example.cartrack.ui.adduser.AddUserActivity
+import com.example.cartrack.ui.main.MainActivity
 import com.example.cartrack.util.ViewModelProviderFactory
 import com.google.android.material.snackbar.Snackbar
 import dagger.android.support.DaggerAppCompatActivity
@@ -25,6 +29,13 @@ class LoginActivity : DaggerAppCompatActivity() {
         factory
     }
 
+    @SuppressLint("SourceLockedOrientationActivity")
+    override fun onStart() {
+        super.onStart()
+
+        requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -40,6 +51,15 @@ class LoginActivity : DaggerAppCompatActivity() {
 
             overridePendingTransition(R.anim.slide_in_from_right, R.anim.slide_out_to_left)
         }
+
+        viewModel.loginSuccessful
+            .observe(this, Observer { loginSuccessful ->
+                if (loginSuccessful) {
+                    startActivity(Intent(this, MainActivity::class.java))
+                    overridePendingTransition(R.anim.slide_in_from_right, R.anim.slide_out_to_left)
+                    finish()
+                }
+            })
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
