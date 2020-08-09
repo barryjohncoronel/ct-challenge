@@ -1,7 +1,7 @@
 package com.example.cartrack.ui.adduser
 
 import androidx.lifecycle.ViewModel
-import com.example.cartrack.ui.adduser.service.AddUserServiceModule
+import com.example.cartrack.data.service.adduser.AddUserServiceModule
 import com.example.cartrack.util.ViewModelKey
 import dagger.Binds
 import dagger.Module

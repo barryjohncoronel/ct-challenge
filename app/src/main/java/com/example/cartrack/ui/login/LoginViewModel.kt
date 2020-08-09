@@ -4,13 +4,12 @@ import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.cartrack.data.db.model.User
-import com.example.cartrack.ui.login.service.LoginService
+import com.example.cartrack.data.service.login.LoginService
 import io.reactivex.SingleObserver
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
-import timber.log.Timber
 import javax.inject.Inject
 
 class LoginViewModel @Inject constructor(
@@ -19,9 +18,9 @@ class LoginViewModel @Inject constructor(
 
     private val compositeDisposable = CompositeDisposable()
 
-    val username = MutableLiveData("")
+    val username = MutableLiveData("barry")
 
-    val password = MutableLiveData("")
+    val password = MutableLiveData("password")
 
     val loginErrorMessage = MutableLiveData("")
 

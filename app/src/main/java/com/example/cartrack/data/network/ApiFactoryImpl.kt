@@ -37,6 +37,7 @@ class ApiFactoryImpl @Inject constructor() : ApiFactory {
     private fun intoRetrofit(client: OkHttpClient): Single<Retrofit> {
         return Single.fromCallable {
                 Retrofit.Builder()
+                    .baseUrl("https://jsonplaceholder.typicode.com/")
                     .client(client)
                     .addConverterFactory(GsonConverterFactory.create())
                     .addCallAdapterFactory(RxJava2CallAdapterFactory.create())

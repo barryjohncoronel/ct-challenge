@@ -11,7 +11,7 @@ import androidx.lifecycle.Observer
 import com.example.cartrack.R
 import com.example.cartrack.databinding.ActivityLoginBinding
 import com.example.cartrack.ui.adduser.AddUserActivity
-import com.example.cartrack.ui.main.MainActivity
+import com.example.cartrack.ui.users.UsersActivity
 import com.example.cartrack.util.ViewModelProviderFactory
 import com.google.android.material.snackbar.Snackbar
 import dagger.android.support.DaggerAppCompatActivity
@@ -55,7 +55,7 @@ class LoginActivity : DaggerAppCompatActivity() {
         viewModel.loginSuccessful
             .observe(this, Observer { loginSuccessful ->
                 if (loginSuccessful) {
-                    startActivity(Intent(this, MainActivity::class.java))
+                    startActivity(Intent(this, UsersActivity::class.java))
                     overridePendingTransition(R.anim.slide_in_from_right, R.anim.slide_out_to_left)
                     finish()
                 }

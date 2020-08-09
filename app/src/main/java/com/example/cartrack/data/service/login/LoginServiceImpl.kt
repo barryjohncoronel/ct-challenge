@@ -1,9 +1,10 @@
-package com.example.cartrack.ui.login.service
+package com.example.cartrack.data.service.login
 
 import android.content.Context
-import com.example.cartrack.R
 import com.example.cartrack.data.db.UserDao
 import com.example.cartrack.data.db.model.User
+import com.example.cartrack.data.exceptions.InvalidUserException
+import com.example.cartrack.data.exceptions.NoUserFoundException
 import io.reactivex.Single
 import javax.inject.Inject
 
@@ -19,11 +20,11 @@ class LoginServiceImpl @Inject constructor(
         return userDao.getCount()
             .flatMap {
                 if (it == 0) {
-                    Single.error(Throwable(context.getString(R.string.no_users_found)))
+                    Single.error(NoUserFoundException())
                 } else {
                     userDao.getUser(username, password)
                         .onErrorResumeNext {
-                            Single.error(Throwable(context.getString(R.string.invalid_credentials)))
+                            Single.error(InvalidUserException())
                         }
                 }
             }

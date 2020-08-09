@@ -1,4 +1,4 @@
-package com.example.cartrack.ui.adduser.service
+package com.example.cartrack.data.service.adduser
 
 import io.reactivex.Completable
 

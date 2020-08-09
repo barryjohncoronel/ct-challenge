@@ -4,8 +4,8 @@ import com.example.cartrack.ui.adduser.AddUserActivity
 import com.example.cartrack.ui.adduser.AddUserModule
 import com.example.cartrack.ui.login.LoginActivity
 import com.example.cartrack.ui.login.LoginModule
-import com.example.cartrack.ui.main.MainActivity
-import com.example.cartrack.ui.main.MainModule
+import com.example.cartrack.ui.users.UsersActivity
+import com.example.cartrack.ui.users.UsersModule
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 
@@ -18,6 +18,6 @@ abstract class ActivitiesModule {
     @ContributesAndroidInjector(modules = [AddUserModule::class])
     abstract fun contributeAddUserActivity(): AddUserActivity
 
-    @ContributesAndroidInjector(modules = [MainModule::class])
-    abstract fun contributeMainActivity(): MainActivity
+    @ContributesAndroidInjector(modules = [UsersModule::class])
+    abstract fun contributeMainActivity(): UsersActivity
 }

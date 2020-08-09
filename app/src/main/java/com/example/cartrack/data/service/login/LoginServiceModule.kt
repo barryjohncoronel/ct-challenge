@@ -1,4 +1,4 @@
-package com.example.cartrack.ui.login.service
+package com.example.cartrack.data.service.login
 
 import dagger.Binds
 import dagger.Module

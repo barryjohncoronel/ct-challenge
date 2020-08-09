@@ -1,9 +1,10 @@
-package com.example.cartrack.ui.adduser.service
+package com.example.cartrack.data.service.adduser
 
 import android.content.Context
 import com.example.cartrack.R
 import com.example.cartrack.data.db.UserDao
 import com.example.cartrack.data.db.model.User
+import com.example.cartrack.data.exceptions.UserAlreadyExistsException
 import io.reactivex.Completable
 import javax.inject.Inject
 
@@ -24,9 +25,8 @@ class AddUserServiceImpl @Inject constructor(
                         )
                     )
                 } else {
-                    Completable.error(Throwable(context.getString(R.string.username_already_exists)))
+                    Completable.error(UserAlreadyExistsException())
                 }
             }
-
     }
 }

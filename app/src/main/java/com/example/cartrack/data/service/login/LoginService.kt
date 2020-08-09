@@ -1,4 +1,4 @@
-package com.example.cartrack.ui.login.service
+package com.example.cartrack.data.service.login
 
 import com.example.cartrack.data.db.model.User
 import io.reactivex.Single

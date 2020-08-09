@@ -3,13 +3,12 @@ package com.example.cartrack.ui.adduser
 import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.cartrack.ui.adduser.service.AddUserService
+import com.example.cartrack.data.service.adduser.AddUserService
 import io.reactivex.CompletableObserver
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
-import timber.log.Timber
 import javax.inject.Inject
 
 class AddUserViewModel @Inject constructor(
