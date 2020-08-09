@@ -10,36 +10,32 @@
             type="com.example.cartrack.ui.users.UsersViewModel" />
     </data>
 
-    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-        android:id="@+id/swipe_refresh_layout"
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/colorBackground"
         tools:context=".ui.users.UsersActivity">
 
-        <FrameLayout
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_users"
             android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scrollbars="none"
+            app:goneUnless="@{viewModel.errorMessage.empty}"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:listitem="@layout/item_user" />
+
+        <TextView
+            android:id="@+id/tv_error_message"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingStart="16dp"
-            android:paddingEnd="16dp">
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv_users"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:scrollbars="none"
-                app:goneUnless="@{viewModel.errorMessage.empty}"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
-
-            <TextView
-                android:id="@+id/tv_error_message"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:gravity="center"
-                android:text="@{viewModel.errorMessage}"
-                android:textColor="@color/colorError"
-                android:textSize="18sp"
-                app:goneUnless="@{!viewModel.errorMessage.empty}" />
-        </FrameLayout>
-    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+            android:layout_gravity="center"
+            android:layout_marginStart="12dp"
+            android:layout_marginEnd="12dp"
+            android:gravity="center"
+            android:text="@{viewModel.errorMessage}"
+            android:textSize="18sp"
+            app:goneUnless="@{!viewModel.errorMessage.empty}" />
+    </FrameLayout>
 </layout>

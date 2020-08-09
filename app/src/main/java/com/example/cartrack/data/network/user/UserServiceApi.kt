@@ -6,6 +6,6 @@ import retrofit2.http.GET
 
 interface UserServiceApi {
 
-    @GET("/users")
+    @GET("https://jsonplaceholder.typicode.com/users")
     fun getUsers(): Single<Response<List<UserFromApi>>>
 }

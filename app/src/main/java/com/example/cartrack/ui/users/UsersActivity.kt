@@ -5,10 +5,13 @@ import android.content.pm.ActivityInfo
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
 import com.example.cartrack.R
 import com.example.cartrack.databinding.ActivityUsersBinding
+import com.example.cartrack.ui.users.adapter.UsersAdapter
 import com.example.cartrack.util.ViewModelProviderFactory
 import dagger.android.support.DaggerAppCompatActivity
+import kotlinx.android.synthetic.main.activity_users.*
 import javax.inject.Inject
 
 class UsersActivity : DaggerAppCompatActivity() {
@@ -21,6 +24,8 @@ class UsersActivity : DaggerAppCompatActivity() {
     private val viewModel: UsersViewModel by viewModels {
         factory
     }
+
+    private var previouslySelectedIndex: Int = -1
 
     @SuppressLint("SourceLockedOrientationActivity")
     override fun onStart() {
@@ -37,5 +42,39 @@ class UsersActivity : DaggerAppCompatActivity() {
         dataBinding.lifecycleOwner = this
 
         viewModel.getUsers()
+
+        viewModel.users
+            .observe(this, Observer { users ->
+                val adapter = UsersAdapter(users)
+
+                adapter.itemListener = object : UsersAdapter.ItemListener {
+                    override fun onExpand(selectedIndex: Int) {
+                        if (previouslySelectedIndex == selectedIndex) {
+                            // toggle between expand and collapse
+                            users[selectedIndex].expanded = !users[selectedIndex].expanded
+
+                            adapter.notifyItemChanged(selectedIndex)
+                        } else {
+                            // un-expand the previously expanded item
+                            if (previouslySelectedIndex != -1 && previouslySelectedIndex < users.size) {
+                                users[previouslySelectedIndex].expanded = false
+                                adapter.notifyItemChanged(previouslySelectedIndex)
+                            }
+
+                            // expand the currently selected item
+                            users[selectedIndex].expanded = true
+                            adapter.notifyItemChanged(selectedIndex)
+                        }
+
+                        previouslySelectedIndex = selectedIndex
+                    }
+
+                    override fun onGoToMap() {
+
+                    }
+                }
+
+                rv_users.adapter = adapter
+            })
     }
 }

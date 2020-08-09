@@ -11,7 +11,9 @@ data class UserFromApi(
     val phone: String,
     val website: String,
     val company: Company
-)
+) {
+    var expanded: Boolean = false
+}
 
 @Keep
 data class Address(

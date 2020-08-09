@@ -1,7 +1,9 @@
 package com.example.cartrack.ui.users
 
+import android.content.Context
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.cartrack.R
 import com.example.cartrack.data.network.user.UserFromApi
 import com.example.cartrack.data.service.users.UsersService
 import io.reactivex.SingleObserver
@@ -13,6 +15,7 @@ import timber.log.Timber
 import javax.inject.Inject
 
 class UsersViewModel @Inject constructor(
+    private val context: Context,
     private val usersService: UsersService
 ) : ViewModel() {
 
@@ -20,13 +23,24 @@ class UsersViewModel @Inject constructor(
 
     val errorMessage = MutableLiveData("")
 
+    val users = MutableLiveData<List<UserFromApi>>()
+
+    companion object {
+        const val PLEASE_WAIT = "Please wait"
+    }
+
     fun getUsers() {
         usersService.getUsers()
+            .apply {
+                errorMessage.value = context.getString(R.string.please_wait)
+            }
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(object : SingleObserver<List<UserFromApi>> {
                 override fun onSuccess(users: List<UserFromApi>) {
-                    Timber.e("onSuccess: $users")
+                    errorMessage.value = ""
+
+                    this@UsersViewModel.users.value = users
                 }
 
                 override fun onSubscribe(d: Disposable) {
