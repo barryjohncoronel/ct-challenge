@@ -13,5 +13,5 @@ interface UsersModule {
     @Binds
     @IntoMap
     @ViewModelKey(UsersViewModel::class)
-    fun bindMainViewModel(viewModel: UsersViewModel): ViewModel
+    fun bindUsersViewModel(viewModel: UsersViewModel): ViewModel
 }
