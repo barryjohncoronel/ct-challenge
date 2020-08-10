@@ -1,6 +1,7 @@
 package com.example.cartrack.ui.users
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.content.pm.ActivityInfo
 import android.os.Bundle
 import androidx.activity.viewModels
@@ -8,6 +9,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import com.example.cartrack.R
 import com.example.cartrack.databinding.ActivityUsersBinding
+import com.example.cartrack.ui.map.MapActivity
 import com.example.cartrack.ui.users.adapter.UsersAdapter
 import com.example.cartrack.util.ViewModelProviderFactory
 import dagger.android.support.DaggerAppCompatActivity
@@ -69,8 +71,13 @@ class UsersActivity : DaggerAppCompatActivity() {
                         previouslySelectedIndex = selectedIndex
                     }
 
-                    override fun onGoToMap() {
+                    override fun onGoToMap(selectedIndex: Int) {
+                        val mapIntent = Intent(this@UsersActivity, MapActivity::class.java).also {
+                            it.putExtra(MapActivity.EXTRA_USER, users[selectedIndex])
+                        }
 
+                        startActivity(mapIntent)
+                        overridePendingTransition(R.anim.slide_in_from_right, R.anim.slide_out_to_left)
                     }
                 }
 

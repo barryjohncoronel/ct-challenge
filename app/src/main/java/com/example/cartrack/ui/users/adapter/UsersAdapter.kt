@@ -8,7 +8,7 @@ import com.example.cartrack.databinding.ItemUserBinding
 
 class UsersAdapter(private val users: List<UserFromApi>) : RecyclerView.Adapter<UsersAdapter.UserViewHolder>() {
 
-    lateinit var itemListener : ItemListener
+    lateinit var itemListener: ItemListener
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UserViewHolder {
         return UserViewHolder(
@@ -36,6 +36,10 @@ class UsersAdapter(private val users: List<UserFromApi>) : RecyclerView.Adapter<
                 itemListener.onExpand(position)
             }
 
+            itemUserBinding.btnSeeAddressOnMap.setOnClickListener {
+                itemListener.onGoToMap(position)
+            }
+
             itemUserBinding.executePendingBindings()
         }
     }
@@ -43,7 +47,7 @@ class UsersAdapter(private val users: List<UserFromApi>) : RecyclerView.Adapter<
     interface ItemListener {
         fun onExpand(selectedIndex: Int)
 
-        fun onGoToMap()
+        fun onGoToMap(selectedIndex: Int)
     }
 }
 

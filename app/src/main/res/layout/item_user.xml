@@ -125,14 +125,11 @@
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btn_see_address_on_map"
                     style="@style/AppTheme.Button"
-                    android:layout_gravity="end"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="end"
                     android:text="@string/see_address_on_map" />
-
             </LinearLayout>
-
         </LinearLayout>
-
     </androidx.cardview.widget.CardView>
 </layout>
