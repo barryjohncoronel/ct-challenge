@@ -24,6 +24,7 @@
         <activity android:name=".ui.adduser.AddUserActivity" />
         <activity android:name=".ui.users.UsersActivity" />
         <activity android:name=".ui.map.MapActivity" />
+        <activity android:name=".ui.selectcountry.SelectCountryActivity" />
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"

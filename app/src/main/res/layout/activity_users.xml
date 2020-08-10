@@ -16,7 +16,6 @@
         android:background="@color/colorBackground"
         tools:context=".ui.users.UsersActivity">
 
-
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_users"
             android:layout_width="match_parent"

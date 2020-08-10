@@ -4,14 +4,13 @@ import android.content.Context
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.cartrack.R
-import com.example.cartrack.data.network.user.UserFromApi
+import com.example.cartrack.data.model.UserFromApi
 import com.example.cartrack.data.service.users.UsersService
 import io.reactivex.SingleObserver
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
-import timber.log.Timber
 import javax.inject.Inject
 
 class UsersViewModel @Inject constructor(
@@ -24,10 +23,6 @@ class UsersViewModel @Inject constructor(
     val errorMessage = MutableLiveData("")
 
     val users = MutableLiveData<List<UserFromApi>>()
-
-    companion object {
-        const val PLEASE_WAIT = "Please wait"
-    }
 
     fun getUsers() {
         usersService.getUsers()

@@ -1,7 +1,7 @@
 package com.example.cartrack.data.service.users
 
+import com.example.cartrack.data.model.UserFromApi
 import com.example.cartrack.data.network.ApiFactory
-import com.example.cartrack.data.network.user.UserFromApi
 import com.example.cartrack.data.network.user.UserServiceApi
 import com.example.cartrack.util.internet.InternetUtil
 import io.reactivex.Single

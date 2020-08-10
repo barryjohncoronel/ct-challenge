@@ -1,4 +1,4 @@
-package com.example.cartrack.data.network.user
+package com.example.cartrack.data.model
 
 import android.os.Parcelable
 import androidx.annotation.Keep

@@ -11,6 +11,7 @@ import androidx.lifecycle.Observer
 import com.example.cartrack.R
 import com.example.cartrack.databinding.ActivityLoginBinding
 import com.example.cartrack.ui.adduser.AddUserActivity
+import com.example.cartrack.ui.selectcountry.SelectCountryActivity
 import com.example.cartrack.ui.users.UsersActivity
 import com.example.cartrack.util.ViewModelProviderFactory
 import com.google.android.material.snackbar.Snackbar
@@ -52,6 +53,15 @@ class LoginActivity : DaggerAppCompatActivity() {
             overridePendingTransition(R.anim.slide_in_from_right, R.anim.slide_out_to_left)
         }
 
+        ll_select_country.setOnClickListener {
+            startActivityForResult(
+                Intent(this, SelectCountryActivity::class.java),
+                SelectCountryActivity.REQUEST_CODE
+            )
+
+            overridePendingTransition(R.anim.slide_in_from_right, R.anim.slide_out_to_left)
+        }
+
         viewModel.loginSuccessful
             .observe(this, Observer { loginSuccessful ->
                 if (loginSuccessful) {
@@ -67,6 +77,8 @@ class LoginActivity : DaggerAppCompatActivity() {
 
         if (requestCode == AddUserActivity.REQUEST_CODE && resultCode == Activity.RESULT_OK) {
             Snackbar.make(dataBinding.root, getString(R.string.add_user_successful), Snackbar.LENGTH_SHORT).show()
+        } else if (requestCode == SelectCountryActivity.REQUEST_CODE && resultCode == Activity.RESULT_OK) {
+            // TODO set country here
         }
     }
 }

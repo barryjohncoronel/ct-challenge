@@ -2,9 +2,9 @@ package com.example.cartrack.data.service.login
 
 import android.content.Context
 import com.example.cartrack.data.db.UserDao
-import com.example.cartrack.data.db.model.User
 import com.example.cartrack.data.exceptions.InvalidUserException
 import com.example.cartrack.data.exceptions.NoUserFoundException
+import com.example.cartrack.data.model.User
 import io.reactivex.Single
 import javax.inject.Inject
 

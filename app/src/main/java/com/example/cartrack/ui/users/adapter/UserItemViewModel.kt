@@ -1,7 +1,7 @@
 package com.example.cartrack.ui.users.adapter
 
-import com.example.cartrack.data.network.user.Address
-import com.example.cartrack.data.network.user.UserFromApi
+import com.example.cartrack.data.model.Address
+import com.example.cartrack.data.model.UserFromApi
 
 class UserItemViewModel(user: UserFromApi) {
 

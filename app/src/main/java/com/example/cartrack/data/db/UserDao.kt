@@ -3,7 +3,7 @@ package com.example.cartrack.data.db
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
-import com.example.cartrack.data.db.model.User
+import com.example.cartrack.data.model.User
 import io.reactivex.Completable
 import io.reactivex.Single
 

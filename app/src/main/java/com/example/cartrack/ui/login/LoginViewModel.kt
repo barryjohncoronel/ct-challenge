@@ -1,9 +1,11 @@
 package com.example.cartrack.ui.login
 
+import android.content.Context
 import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.cartrack.data.db.model.User
+import com.example.cartrack.R
+import com.example.cartrack.data.model.User
 import com.example.cartrack.data.service.login.LoginService
 import io.reactivex.SingleObserver
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -13,6 +15,7 @@ import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
 class LoginViewModel @Inject constructor(
+    private val context: Context,
     private val loginService: LoginService
 ) : ViewModel() {
 
@@ -27,6 +30,8 @@ class LoginViewModel @Inject constructor(
     val enableLogin = MediatorLiveData<Boolean>()
 
     val loginSuccessful = MutableLiveData(false)
+
+    val selectedCountry = MutableLiveData(context.getString(R.string.select_country))
 
     init {
         enableLogin.addSource(username) { checkFieldsForLogin() }

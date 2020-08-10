@@ -1,4 +1,4 @@
-package com.example.cartrack.data.db.model
+package com.example.cartrack.data.model
 
 import androidx.annotation.Keep
 import androidx.room.Entity

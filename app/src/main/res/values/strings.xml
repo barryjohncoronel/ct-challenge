@@ -10,4 +10,5 @@
     <string name="address">Address</string>
     <string name="company">Company</string>
     <string name="see_address_on_map">See Address on Map</string>
+    <string name="select_country">Select Country</string>
 </resources>
