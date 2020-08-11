@@ -51,7 +51,7 @@ class SelectCountryViewModel @Inject constructor() : ViewModel() {
                     Locale("en", isoCountry)
                 }
                 .map { locale ->
-                    Country("${locale.country} - ${locale.displayCountry}")
+                    Country(locale.country, locale.displayCountry)
                 }.sortedBy {
                     it.name
                 }

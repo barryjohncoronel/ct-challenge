@@ -36,15 +36,14 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <TextView
+                android:id="@+id/tv_selected_country"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="end"
                 android:paddingTop="20dp"
                 android:paddingBottom="10dp"
-                android:text="@{viewModel.selectedCountry}"
-                android:textStyle="bold"
-                app:goneUnless="@{!viewModel.selectedCountry.empty}"
-                tools:text="Select Country" />
+                android:text="@string/select_country"
+                android:textStyle="bold" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"

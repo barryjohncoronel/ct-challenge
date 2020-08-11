@@ -1,17 +1,22 @@
 package com.example.cartrack.ui.selectcountry
 
 import android.annotation.SuppressLint
+import android.app.Activity
+import android.content.Intent
 import android.content.pm.ActivityInfo
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.cartrack.R
+import com.example.cartrack.data.model.Country
 import com.example.cartrack.databinding.ActivitySelectCountryBinding
+import com.example.cartrack.ui.selectcountry.adapter.CountriesAdapter
 import com.example.cartrack.util.ViewModelProviderFactory
 import dagger.android.support.DaggerAppCompatActivity
 import kotlinx.android.synthetic.main.activity_select_country.*
-import timber.log.Timber
 import javax.inject.Inject
 
 class SelectCountryActivity : DaggerAppCompatActivity() {
@@ -27,6 +32,7 @@ class SelectCountryActivity : DaggerAppCompatActivity() {
 
     companion object {
         const val REQUEST_CODE = 101
+        const val EXTRA_SELECTED_COUNTRY = "EXTRA_SELECTED_COUNTRY"
     }
 
     @SuppressLint("SourceLockedOrientationActivity")
@@ -46,8 +52,39 @@ class SelectCountryActivity : DaggerAppCompatActivity() {
         cl_toolbar.setOnClickListener { onBackPressed() }
 
         viewModel.countries
-            .observe(this, Observer {
-                Timber.e("bars: $it") // TODO add adapter here
+            .observe(this, Observer { countries ->
+                // set selected true when there is a passed Country
+                intent.extras?.getParcelable<Country>(EXTRA_SELECTED_COUNTRY)?.let { selectedCountry ->
+                    countries
+                        .filter { it.code == selectedCountry.code }
+                        .map {
+                            it.selected = true
+                        }
+                }
+
+                val adapter = CountriesAdapter(countries)
+
+                adapter.itemListener = object : CountriesAdapter.ItemListener {
+                    override fun onSelect(selectedIndex: Int) {
+                        // finish the activity immediately once user select a country
+                        Intent().also { intent ->
+                            val selectedCountry = countries[selectedIndex].also { it.selected = true }
+
+                            intent.putExtra(EXTRA_SELECTED_COUNTRY, selectedCountry)
+                            setResult(Activity.RESULT_OK, intent)
+                            onBackPressed()
+                        }
+                    }
+                }
+
+                rv_countries.addItemDecoration(
+                    DividerItemDecoration(
+                        this,
+                        LinearLayoutManager.VERTICAL
+                    )
+                )
+
+                rv_countries.adapter = adapter
             })
     }
 

@@ -6,8 +6,7 @@ import kotlinx.android.parcel.Parcelize
 
 @Keep
 @Parcelize
-data class Country(
-    val code: String,
-    val name: String,
-    var selected: Boolean = false
+data class GeoLocation(
+    val lat: String,
+    val lng: String
 ) : Parcelable

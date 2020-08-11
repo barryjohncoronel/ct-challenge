@@ -1,7 +1,6 @@
 package com.example.cartrack.data.service.adduser
 
 import android.content.Context
-import com.example.cartrack.R
 import com.example.cartrack.data.db.UserDao
 import com.example.cartrack.data.exceptions.UserAlreadyExistsException
 import com.example.cartrack.data.model.User

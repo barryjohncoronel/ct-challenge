@@ -6,8 +6,8 @@ import kotlinx.android.parcel.Parcelize
 
 @Keep
 @Parcelize
-data class Country(
-    val code: String,
+data class Company(
     val name: String,
-    var selected: Boolean = false
+    val catchPhrase: String,
+    val bs: String
 ) : Parcelable

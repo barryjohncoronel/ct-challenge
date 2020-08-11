@@ -6,4 +6,5 @@
     <color name="colorError">#CC373C</color>
     <color name="colorBackground">#F6F7F9</color>
     <color name="colorGray">#808080</color>
+    <color name="colorSelectedGray">#EEEEEE</color>
 </resources>

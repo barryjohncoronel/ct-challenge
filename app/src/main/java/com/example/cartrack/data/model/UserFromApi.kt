@@ -17,28 +17,3 @@ data class UserFromApi(
     var expanded: Boolean = false
 ) : Parcelable
 
-@Keep
-@Parcelize
-data class Address(
-    val street: String,
-    val suite: String,
-    val city: String,
-    val zipcode: String,
-    val geo: GeoLocation
-) : Parcelable
-
-@Keep
-@Parcelize
-data class GeoLocation(
-    val lat: String,
-    val lng: String
-) : Parcelable
-
-@Keep
-@Parcelize
-data class Company(
-    val name: String,
-    val catchPhrase: String,
-    val bs: String
-) : Parcelable
-

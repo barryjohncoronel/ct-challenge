@@ -4,7 +4,7 @@ import android.content.Context
 import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.cartrack.R
+import com.example.cartrack.data.model.Country
 import com.example.cartrack.data.model.User
 import com.example.cartrack.data.service.login.LoginService
 import io.reactivex.SingleObserver
@@ -31,15 +31,18 @@ class LoginViewModel @Inject constructor(
 
     val loginSuccessful = MutableLiveData(false)
 
-    val selectedCountry = MutableLiveData(context.getString(R.string.select_country))
+    val selectedCountry = MutableLiveData<Country>()
 
     init {
         enableLogin.addSource(username) { checkFieldsForLogin() }
         enableLogin.addSource(password) { checkFieldsForLogin() }
+        enableLogin.addSource(selectedCountry) { checkFieldsForLogin() }
     }
 
     private fun checkFieldsForLogin() {
-        enableLogin.value = username.value!!.isNotBlank() and password.value!!.isNotBlank()
+        enableLogin.value = username.value!!.isNotBlank()
+                && password.value!!.isNotBlank()
+                && null != selectedCountry.value
 
         loginErrorMessage.value = ""
     }

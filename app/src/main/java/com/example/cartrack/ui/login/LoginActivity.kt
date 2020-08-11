@@ -12,6 +12,7 @@ import com.example.cartrack.R
 import com.example.cartrack.databinding.ActivityLoginBinding
 import com.example.cartrack.ui.adduser.AddUserActivity
 import com.example.cartrack.ui.selectcountry.SelectCountryActivity
+import com.example.cartrack.ui.selectcountry.SelectCountryActivity.Companion.EXTRA_SELECTED_COUNTRY
 import com.example.cartrack.ui.users.UsersActivity
 import com.example.cartrack.util.ViewModelProviderFactory
 import com.google.android.material.snackbar.Snackbar
@@ -45,21 +46,29 @@ class LoginActivity : DaggerAppCompatActivity() {
         dataBinding.lifecycleOwner = this
 
         btn_add_user.setOnClickListener {
-            startActivityForResult(
-                Intent(this, AddUserActivity::class.java),
-                AddUserActivity.REQUEST_CODE
-            )
+            Intent(this, AddUserActivity::class.java).also { intent ->
+                startActivityForResult(
+                    intent,
+                    AddUserActivity.REQUEST_CODE
+                )
 
-            overridePendingTransition(R.anim.slide_in_from_right, R.anim.slide_out_to_left)
+                overridePendingTransition(R.anim.slide_in_from_right, R.anim.slide_out_to_left)
+            }
         }
 
         ll_select_country.setOnClickListener {
-            startActivityForResult(
-                Intent(this, SelectCountryActivity::class.java),
-                SelectCountryActivity.REQUEST_CODE
-            )
+            Intent(this, SelectCountryActivity::class.java).also { intent ->
+                viewModel.selectedCountry.value?.let { selectedCountry ->
+                    intent.putExtra(EXTRA_SELECTED_COUNTRY, selectedCountry)
+                }
 
-            overridePendingTransition(R.anim.slide_in_from_right, R.anim.slide_out_to_left)
+                startActivityForResult(
+                    intent,
+                    SelectCountryActivity.REQUEST_CODE
+                )
+
+                overridePendingTransition(R.anim.slide_in_from_right, R.anim.slide_out_to_left)
+            }
         }
 
         viewModel.loginSuccessful
@@ -76,9 +85,20 @@ class LoginActivity : DaggerAppCompatActivity() {
         super.onActivityResult(requestCode, resultCode, data)
 
         if (requestCode == AddUserActivity.REQUEST_CODE && resultCode == Activity.RESULT_OK) {
+            // clear fields
+            viewModel.username.value = ""
+            viewModel.password.value = ""
+            viewModel.loginErrorMessage.value = ""
+
             Snackbar.make(dataBinding.root, getString(R.string.add_user_successful), Snackbar.LENGTH_SHORT).show()
+
+
         } else if (requestCode == SelectCountryActivity.REQUEST_CODE && resultCode == Activity.RESULT_OK) {
-            // TODO set country here
+            viewModel.selectedCountry.value = data?.getParcelableExtra(EXTRA_SELECTED_COUNTRY)
+
+            viewModel.selectedCountry.value?.let { selectedCountry ->
+                tv_selected_country.text = "${selectedCountry.code} - ${selectedCountry.name}"
+            }
         }
     }
 }
