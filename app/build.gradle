@@ -69,6 +69,7 @@ dependencies {
     implementation "androidx.room:room-runtime:2.2.5"
     kapt "androidx.room:room-compiler:2.2.5"
     implementation "androidx.room:room-rxjava2:2.2.5"
+    testImplementation "androidx.room:room-testing:2.2.5"
 
     implementation "com.squareup.retrofit2:retrofit:2.9.0"
     implementation "com.squareup.retrofit2:converter-gson:2.9.0"
@@ -94,13 +95,27 @@ dependencies {
 
     implementation "com.google.android.gms:play-services-maps:17.0.0"
 
+
+    // test libraries
     testImplementation 'junit:junit:4.13'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
+    androidTestImplementation 'androidx.test:runner:1.2.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 
+    testImplementation "org.robolectric:robolectric:4.3.1"
+
     testImplementation "org.mockito:mockito-core:3.2.0"
+
     androidTestImplementation "org.mockito:mockito-android:3.2.0"
+    testImplementation "com.nhaarman.mockitokotlin2:mockito-kotlin:2.2.0"
 
     implementation 'org.fluttercode.datafactory:datafactory:0.8'
+
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
+
+    testImplementation "org.assertj:assertj-core:3.14.0"
+
+    testImplementation 'android.arch.core:core-testing:1.1.1'
+
+    testImplementation "androidx.test:core:1.2.0"
 }
