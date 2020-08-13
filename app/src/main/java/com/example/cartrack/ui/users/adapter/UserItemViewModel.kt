@@ -1,9 +1,9 @@
 package com.example.cartrack.ui.users.adapter
 
 import com.example.cartrack.data.model.Address
-import com.example.cartrack.data.model.UserFromApi
+import com.example.cartrack.data.model.User
 
-class UserItemViewModel(user: UserFromApi) {
+class UserItemViewModel(user: User) {
 
     val name = user.name
 

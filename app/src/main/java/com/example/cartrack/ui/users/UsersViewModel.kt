@@ -4,7 +4,7 @@ import android.content.Context
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.cartrack.R
-import com.example.cartrack.data.model.UserFromApi
+import com.example.cartrack.data.model.User
 import com.example.cartrack.data.service.users.UsersService
 import io.reactivex.SingleObserver
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -22,7 +22,7 @@ class UsersViewModel @Inject constructor(
 
     val errorMessage = MutableLiveData("")
 
-    val users = MutableLiveData<List<UserFromApi>>()
+    val users = MutableLiveData<List<User>>()
 
     fun getUsers() {
         usersService.getUsers()
@@ -31,8 +31,8 @@ class UsersViewModel @Inject constructor(
             }
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
-            .subscribe(object : SingleObserver<List<UserFromApi>> {
-                override fun onSuccess(users: List<UserFromApi>) {
+            .subscribe(object : SingleObserver<List<User>> {
+                override fun onSuccess(users: List<User>) {
                     errorMessage.value = ""
 
                     this@UsersViewModel.users.value = users

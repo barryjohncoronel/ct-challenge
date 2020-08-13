@@ -3,10 +3,10 @@ package com.example.cartrack.ui.users.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.cartrack.data.model.UserFromApi
+import com.example.cartrack.data.model.User
 import com.example.cartrack.databinding.ItemUserBinding
 
-class UsersAdapter(private val users: List<UserFromApi>) : RecyclerView.Adapter<UsersAdapter.UserViewHolder>() {
+class UsersAdapter(private val users: List<User>) : RecyclerView.Adapter<UsersAdapter.UserViewHolder>() {
 
     lateinit var itemListener: ItemListener
 

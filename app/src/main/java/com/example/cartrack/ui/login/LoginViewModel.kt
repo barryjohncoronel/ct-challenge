@@ -21,9 +21,9 @@ class LoginViewModel @Inject constructor(
 
     private val compositeDisposable = CompositeDisposable()
 
-    val username = MutableLiveData("barry")
+    val username = MutableLiveData("")
 
-    val password = MutableLiveData("password")
+    val password = MutableLiveData("")
 
     val loginErrorMessage = MutableLiveData("")
 

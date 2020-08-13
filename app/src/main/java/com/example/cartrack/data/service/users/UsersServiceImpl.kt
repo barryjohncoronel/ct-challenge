@@ -1,6 +1,6 @@
 package com.example.cartrack.data.service.users
 
-import com.example.cartrack.data.model.UserFromApi
+import com.example.cartrack.data.model.User
 import com.example.cartrack.data.network.ApiFactory
 import com.example.cartrack.data.network.user.UserServiceApi
 import com.example.cartrack.util.internet.InternetUtil
@@ -12,7 +12,7 @@ class UsersServiceImpl @Inject constructor(
     private val internetUtil: InternetUtil
 ) : UsersService {
 
-    override fun getUsers(): Single<List<UserFromApi>> {
+    override fun getUsers(): Single<List<User>> {
         return internetUtil.isNetworkAvailable()
             .flatMap {
                 apiFactory.api(UserServiceApi::class.java)

@@ -5,7 +5,7 @@ import android.content.pm.ActivityInfo
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.cartrack.R
-import com.example.cartrack.data.model.UserFromApi
+import com.example.cartrack.data.model.User
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
@@ -36,7 +36,7 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
     }
 
     override fun onMapReady(googleMap: GoogleMap?) {
-        val user = intent.getParcelableExtra<UserFromApi>(EXTRA_USER)
+        val user = intent.getParcelableExtra<User>(EXTRA_USER)
 
         user?.let {
             val userLatLng = LatLng(
