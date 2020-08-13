@@ -5,7 +5,7 @@ import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.cartrack.data.model.Country
-import com.example.cartrack.data.model.User
+import com.example.cartrack.data.model.UserCredentials
 import com.example.cartrack.data.service.login.LoginService
 import io.reactivex.SingleObserver
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -52,8 +52,8 @@ class LoginViewModel @Inject constructor(
             .login(username.value!!, password.value!!)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
-            .subscribe(object : SingleObserver<User> {
-                override fun onSuccess(user: User) {
+            .subscribe(object : SingleObserver<UserCredentials> {
+                override fun onSuccess(userCredentials: UserCredentials) {
                     loginSuccessful.value = true
                 }
 

@@ -10,7 +10,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import com.example.cartrack.R
 import com.example.cartrack.databinding.ActivityLoginBinding
-import com.example.cartrack.ui.adduser.AddUserActivity
+import com.example.cartrack.ui.addusercredentials.AddUserCredentialsActivity
 import com.example.cartrack.ui.selectcountry.SelectCountryActivity
 import com.example.cartrack.ui.selectcountry.SelectCountryActivity.Companion.EXTRA_SELECTED_COUNTRY
 import com.example.cartrack.ui.users.UsersActivity
@@ -45,11 +45,11 @@ class LoginActivity : DaggerAppCompatActivity() {
         dataBinding.viewModel = viewModel
         dataBinding.lifecycleOwner = this
 
-        btn_add_user.setOnClickListener {
-            Intent(this, AddUserActivity::class.java).also { intent ->
+        btn_add_user_credentials.setOnClickListener {
+            Intent(this, AddUserCredentialsActivity::class.java).also { intent ->
                 startActivityForResult(
                     intent,
-                    AddUserActivity.REQUEST_CODE
+                    AddUserCredentialsActivity.REQUEST_CODE
                 )
 
                 overridePendingTransition(R.anim.slide_in_from_right, R.anim.slide_out_to_left)
@@ -84,13 +84,13 @@ class LoginActivity : DaggerAppCompatActivity() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
-        if (requestCode == AddUserActivity.REQUEST_CODE && resultCode == Activity.RESULT_OK) {
+        if (requestCode == AddUserCredentialsActivity.REQUEST_CODE && resultCode == Activity.RESULT_OK) {
             // clear fields
             viewModel.username.value = ""
             viewModel.password.value = ""
             viewModel.loginErrorMessage.value = ""
 
-            Snackbar.make(dataBinding.root, getString(R.string.add_user_successful), Snackbar.LENGTH_SHORT).show()
+            Snackbar.make(dataBinding.root, getString(R.string.add_user_credentials_successful), Snackbar.LENGTH_SHORT).show()
 
 
         } else if (requestCode == SelectCountryActivity.REQUEST_CODE && resultCode == Activity.RESULT_OK) {

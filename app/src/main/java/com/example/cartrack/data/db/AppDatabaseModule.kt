@@ -16,8 +16,8 @@ class AppDatabaseModule {
 
     @Provides
     @Singleton
-    fun provideUserDao(appDatabase: AppDatabase): UserDao {
-        return appDatabase.userDao()
+    fun provideUserCredentialsDao(appDatabase: AppDatabase): UserCredentialsDao {
+        return appDatabase.userCredentialsDao()
     }
 
 }

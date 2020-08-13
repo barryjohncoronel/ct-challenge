@@ -4,12 +4,12 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.example.cartrack.data.model.User
+import com.example.cartrack.data.model.UserCredentials
 
-@Database(entities = [User::class], version = 1, exportSchema = false)
+@Database(entities = [UserCredentials::class], version = 1, exportSchema = false)
 abstract class AppDatabase : RoomDatabase() {
 
-    abstract fun userDao(): UserDao
+    abstract fun userCredentialsDao(): UserCredentialsDao
 
     companion object {
         // Singleton prevents multiple instances of database opening at the same time.

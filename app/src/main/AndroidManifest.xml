@@ -21,7 +21,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.adduser.AddUserActivity" />
+        <activity android:name=".ui.addusercredentials.AddUserCredentialsActivity" />
         <activity android:name=".ui.users.UsersActivity" />
         <activity android:name=".ui.map.MapActivity" />
         <activity android:name=".ui.selectcountry.SelectCountryActivity" />

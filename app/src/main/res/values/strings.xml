@@ -5,7 +5,7 @@
     <string name="login">Login</string>
     <string name="add_user">Add User</string>
     <string name="add_user_message">Username minimum length: 5\nPassword minimum length: 8</string>
-    <string name="add_user_successful">Add User successful.</string>
+    <string name="add_user_credentials_successful">Add User successful.</string>
     <string name="please_wait">Please wait…</string>
     <string name="address">Address</string>
     <string name="company">Company</string>

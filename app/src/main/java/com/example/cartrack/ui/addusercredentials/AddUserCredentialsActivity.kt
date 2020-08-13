@@ -1,4 +1,4 @@
-package com.example.cartrack.ui.adduser
+package com.example.cartrack.ui.addusercredentials
 
 import android.annotation.SuppressLint
 import android.app.Activity
@@ -8,20 +8,20 @@ import androidx.activity.viewModels
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import com.example.cartrack.R
-import com.example.cartrack.databinding.ActivityAddUserBinding
+import com.example.cartrack.databinding.ActivityAddUserCredentialsBinding
 import com.example.cartrack.util.ViewModelProviderFactory
 import dagger.android.support.DaggerAppCompatActivity
-import kotlinx.android.synthetic.main.activity_add_user.*
+import kotlinx.android.synthetic.main.activity_add_user_credentials.*
 import javax.inject.Inject
 
-class AddUserActivity : DaggerAppCompatActivity() {
+class AddUserCredentialsActivity : DaggerAppCompatActivity() {
 
-    private lateinit var dataBinding: ActivityAddUserBinding
+    private lateinit var dataBinding: ActivityAddUserCredentialsBinding
 
     @Inject
     lateinit var factory: ViewModelProviderFactory
 
-    private val viewModel: AddUserViewModel by viewModels {
+    private val credentialsViewModel: AddUserCredentialsViewModel by viewModels {
         factory
     }
 
@@ -39,15 +39,15 @@ class AddUserActivity : DaggerAppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        dataBinding = DataBindingUtil.setContentView(this, R.layout.activity_add_user)
-        dataBinding.viewModel = viewModel
+        dataBinding = DataBindingUtil.setContentView(this, R.layout.activity_add_user_credentials)
+        dataBinding.viewModel = credentialsViewModel
         dataBinding.lifecycleOwner = this
 
         cl_toolbar.setOnClickListener { onBackPressed() }
 
-        viewModel.addUserSuccessful
-            .observe(this, Observer { addUserSuccessful ->
-                if (addUserSuccessful) {
+        credentialsViewModel.addUserCredentialsSuccessful
+            .observe(this, Observer { addUserCredentialsSuccessful ->
+                if (addUserCredentialsSuccessful) {
                     setResult(Activity.RESULT_OK)
                     onBackPressed()
                 }
