@@ -7,7 +7,7 @@
 
         <variable
             name="viewModel"
-            type="com.example.cartrack.ui.users.UsersViewModel" />
+            type="com.example.ct.ui.users.UsersViewModel" />
     </data>
 
     <FrameLayout

@@ -7,7 +7,7 @@
 
         <variable
             name="viewModel"
-            type="com.example.cartrack.ui.selectcountry.adapter.CountryItemViewModel" />
+            type="com.example.ct.ui.selectcountry.adapter.CountryItemViewModel" />
     </data>
 
     <TextView

@@ -7,7 +7,7 @@
 
         <variable
             name="viewModel"
-            type="com.example.cartrack.ui.users.adapter.UserItemViewModel" />
+            type="com.example.ct.ui.users.adapter.UserItemViewModel" />
     </data>
 
     <androidx.cardview.widget.CardView

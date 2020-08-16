@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.cartrack">
+    package="com.example.ct">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
-        android:name=".BaseApplication"
+        android:name="com.example.ct.BaseApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -14,17 +14,17 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <activity android:name=".ui.login.LoginActivity">
+        <activity android:name="com.example.ct.ui.login.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.addusercredentials.AddUserCredentialsActivity" />
-        <activity android:name=".ui.users.UsersActivity" />
-        <activity android:name=".ui.map.MapActivity" />
-        <activity android:name=".ui.selectcountry.SelectCountryActivity" />
+        <activity android:name="com.example.ct.ui.addusercredentials.AddUserCredentialsActivity" />
+        <activity android:name="com.example.ct.ui.users.UsersActivity" />
+        <activity android:name="com.example.ct.ui.map.MapActivity" />
+        <activity android:name="com.example.ct.ui.selectcountry.SelectCountryActivity" />
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
